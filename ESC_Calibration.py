@@ -6,6 +6,7 @@ __date__ = "Jan 8, 2020"
 __version__ = "0.0.1"
 __status__ = "Prototype"
 
+# A piece of code to calibrate T-Motor A10 ESC without stick
 # GPIO 27 for output
 
 import time
@@ -19,19 +20,18 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(27, GPIO.OUT)
 ESC = GPIO.PWM(27, A10.freq) # Set GPIO27 to output 50Hz PWM
-
-print("Make sure the ESC is powered OFF. Starting in 3 sec...")
+print("Make sure the ESC is powered OFF. Starting ESC Programming in 3 sec...")
 time.sleep(3)
-ESC.start(A10.duty_min)
+ESC.start(A10.duty_max)
 user = input("Power on the ESC and press Enter.")
-user = float(input("Input desired speed:(10~90)"))
+user = input("Press Enter when you heard 'Beep-Beep'...")
+ESC.ChangeDutyCycle(A10.duty_min)
+time.sleep(3.5)
+print("ESC calibration complete.")
 ESC.stop()
-ESC.start(user)
-run = True
-while run:
-    try:
-        1
-    except:
-        print("An exception occurred")
-        run = False
+
+GPIO.cleanup()
+
+
+
 

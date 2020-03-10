@@ -10,10 +10,10 @@ __status__ = "Prototype"
 # GPIO 27 for output
 
 import time
-import ESC_Setup
+from ESC_Setup import *
 import RPi.GPIO as GPIO
 
-A10 = ESC('A10',50,90,10)
+A10 = ESC('A10',50,90,5)
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
